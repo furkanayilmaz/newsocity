@@ -41,7 +41,6 @@ const NewsList = ({ navigation }) => {
         axios({
             method: 'get',
             url: "https://newsapi.org/v2/top-headlines?country=us&apiKey=8a4d4f5d2ac8419e9ff359382ff06993",
-
         }).then(response => {
             setNews(response.data);
             setLoading(false);

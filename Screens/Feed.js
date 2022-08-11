@@ -6,7 +6,7 @@ import Header from '../components/Global/Header';
 const Feed = ({ navigation }) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <StatusBar backgroundColor={"dark"}/>
+            <StatusBar />
             <Header />
 
             <NewsList navigation={navigation} />
