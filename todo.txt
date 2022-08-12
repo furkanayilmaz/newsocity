@@ -1,0 +1,5 @@
+1. Make sure there is no random loader in Search if user did not press Search
+
+2. Return an error letting the user know that there are 0 items found in that search.
+
+3. Adjust the time so that it doesn't look in a different format

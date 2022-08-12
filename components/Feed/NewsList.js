@@ -12,11 +12,14 @@ const NewsList = ({ navigation }) => {
     const [refreshing, setRefreshing] = useState(false);
     const [loading, setLoading] = useState(true);
     const [news, setNews] = useState([]);
+    const [imageLoading, setImageLoading] = useState(true);
 
-    const bookmarkHapticFeedback = () => {
+    const bookmarkHapticFeedback = async (item) => {
         HapticFeedback.trigger(
             'impactMedium',
         )
+
+    
     }
 
     const openURLS = useCallback(async (url) => {
@@ -52,6 +55,11 @@ const NewsList = ({ navigation }) => {
         })
     }, [refreshing])
 
+
+    const onLoad = () => {
+        setImageLoading(false);
+    }
+
     return (
         <ScrollView refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -66,7 +74,9 @@ const NewsList = ({ navigation }) => {
                                 <View style={styles.container}>
                                     {/* <Image source={{ uri: }} style={styles.newsThumbnailImage} /> */}
 
-                                    {item.urlToImage == null ? null : <Image source={{ uri: item.urlToImage }} style={styles.newsThumbnailImage} />}
+                                    {item.urlToImage == null ? null : <Image source={{ uri: item.urlToImage }} style={styles.newsThumbnailImage} onLoad={onLoad}/>}
+
+                                    {imageLoading === true ? <ActivityIndicator size={"small"} /> : null}
 
 
 
@@ -77,7 +87,7 @@ const NewsList = ({ navigation }) => {
                                     <View style={styles.newsActionsContainer}>
                                         <Text style={styles.newsRelaseInfo}>{item.author == null ? <Text>{item.publishedAt}</Text> : <Text>{item.publishedAt} · {item.author}</Text>}</Text>
 
-                                        <TouchableOpacity onPress={bookmarkHapticFeedback} style={styles.bookmarkTouchableOpacity}>
+                                        <TouchableOpacity onPress={() => bookmarkHapticFeedback(item)} style={styles.bookmarkTouchableOpacity}>
                                             <Image source={require("../../assets/images/bookmark.png")} style={styles.bookmarkImage} />
                                         </TouchableOpacity>
                                     </View>

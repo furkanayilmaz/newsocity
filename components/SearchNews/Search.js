@@ -8,7 +8,7 @@ const Input = ({ navigation }) => {
     const [search, setSearch] = useState(null);
     const [loading, setLoading] = useState(true);
     const [news, setNews] = useState([]);
-    const [imageLoading, setImageLoading] = useState(false);
+    const [imageLoading, setImageLoading] = useState(true);
 
     const searchQuery = () => {
         Keyboard.dismiss();
@@ -47,6 +47,10 @@ const Input = ({ navigation }) => {
         }
     })
 
+    const onLoad = () => {
+        setImageLoading(false);
+    }
+
     return (
         <>
             <View>
@@ -69,7 +73,9 @@ const Input = ({ navigation }) => {
                                     <View style={styles.container}>
                                         {/* <Image source={{ uri: }} style={styles.newsThumbnailImage} /> */}
 
-                                        {item.urlToImage == null ? null : <Image source={{ uri: item.urlToImage }} style={styles.newsThumbnailImage} />}
+                                        {item.urlToImage == null ? null : <Image source={{ uri: item.urlToImage }} style={styles.newsThumbnailImage} onLoad={onLoad}/>}
+
+                                        {imageLoading === true ? <ActivityIndicator size={"small"} /> : null}
 
                                         <Text style={styles.newsTitle}>{item.title}</Text>
 
