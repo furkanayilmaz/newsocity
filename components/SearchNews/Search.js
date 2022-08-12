@@ -17,7 +17,7 @@ const Input = ({ navigation }) => {
         )
         axios({
             method: "get",
-            url: `https://newsapi.org/v2/everything?q=${search}&sortBy=popularity&apiKey=e79939cd05a342ff955d40bd6650420a`,
+            url: `https://newsapi.org/v2/everything?q=${search}&sortBy=popularity&apiKey={newsapi.org api key here}`,
         }).then(response => {
             setNews(response.data);
             setLoading(false);

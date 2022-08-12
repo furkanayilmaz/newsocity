@@ -1,81 +1,56 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, RefreshControl, TouchableWithoutFeedback, ActivityIndicator, Linking, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState, useCallback } from 'react';
+import { View, Text, ScrollView, StyleSheet, TouchableWithoutFeedback, Image, TouchableOpacity, RefreshControl, ActivityIndicator } from 'react-native';
 import HapticFeedback from 'react-native-haptic-feedback';
 import { Divider } from "@rneui/themed";
-import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const wait = (timeout) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
-const NewsList = ({ navigation }) => {
+const SavedComponent = () => {
     const [refreshing, setRefreshing] = useState(false);
-    const [loading, setLoading] = useState(true);
     const [news, setNews] = useState([]);
-    const [imageLoading, setImageLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
-    const bookmarkHapticFeedback = async (item) => {
-        HapticFeedback.trigger(
-            'impactMedium',
-        )
-
-
+    const getLocalStorageData = async () => {
         try {
-            const jsonValue = JSON.stringify(item);
-            await AsyncStorage.setItem("news_item", jsonValue);
+            const jsonValue = await AsyncStorage.getItem("news_item");
+            setNews(JSON.parse(jsonValue));
+            setLoading(false);
+            console.log(news);
+            return jsonValue != null ? JSON.parse(jsonValue) : null;
         } catch (e) {
             console.log(e);
         }
-
     }
 
-    const openURLS = useCallback(async (url) => {
+    useEffect(() => {
+        getLocalStorageData();
+    }, [refreshing])
+
+    const removeHapticFeedback = () => {
         HapticFeedback.trigger(
             'impactMedium',
         )
-        const supported = await Linking.canOpenURL(url);
-
-        if (supported) {
-            /*navigation.navigate('WebViewNews', {
-                webUrl: url,
-            }); */
-            await Linking.openURL(url);
-        }
-    })
+    }
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);
         wait(2000).then(() => setRefreshing(false));
-    }, [])
-
-    useEffect(() => {
-        axios({
-            method: 'get',
-            url: "https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsapi.org api key here}",
-
-        }).then(response => {
-            setNews(response.data);
-            setLoading(false);
-        }).catch(err => {
-            Alert.alert(err);
-        })
-    }, [refreshing])
-
-
-    const onLoad = () => {
-        setImageLoading(false);
-    }
+    })
 
     return (
-        <ScrollView refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }>
-            <Text style={{ fontFamily: "DMSans-Bold", marginLeft: "8%", marginTop: "7%", fontSize: 16, color: "#000" }}>Today's Headline</Text>
+        <ScrollView style={{ height: "90%" }}
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+        >
 
-            {loading === true ? <ActivityIndicator size={"small"} /> :
+
+            {news === null ? <ActivityIndicator size={"small"} /> :
                 (
-                    news.articles.map((item, index) => {
+                    news.map((item, index) => {
                         return (
                             <TouchableWithoutFeedback onPress={() => openURLS(item.url)} key={index}>
                                 <View style={styles.container}>
@@ -106,7 +81,9 @@ const NewsList = ({ navigation }) => {
                     })
                 )
             }
-        </ScrollView >
+
+        </ScrollView>
+
     )
 }
 
@@ -166,4 +143,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default NewsList;
+export default SavedComponent;

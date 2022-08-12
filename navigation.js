@@ -27,6 +27,6 @@ export const BottomTabs = () => (
     <Tab.Navigator screenOptions={{ headerShown: false, tabBarAllowFontScaling: false, tabBarStyle: { backgroundColor: "#fff" } }} >
         <Tab.Screen name="Feed" component={Feed} />
         <Tab.Screen name='Search' component={SearchNews} />
-        <Tab.Screen name="Saved" component={SavedNews} />
+        {/* <Tab.Screen name="Saved" component={SavedNews} /> */}
     </Tab.Navigator>
 )

@@ -3,3 +3,5 @@
 2. Return an error letting the user know that there are 0 items found in that search.
 
 3. Adjust the time so that it doesn't look in a different format
+
+4. Add icons to the bottom navigation bar
