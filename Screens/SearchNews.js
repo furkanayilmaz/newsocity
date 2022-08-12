@@ -1,11 +1,12 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
-import Input from '../components/SearchNews/Input';
+import { SafeAreaView, Text  } from 'react-native';
+import Input from '../components/SearchNews/Search';
 
-const SearchNews = () => {
+const SearchNews = ({ navigation }) => {
     return (
-        <SafeAreaView style={{ flex: 1}}>
-            <Input />
+        <SafeAreaView>
+            <Input navigation={navigation}/>
+
         </SafeAreaView>
     )
 }

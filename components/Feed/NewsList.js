@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, RefreshControl, TouchableWithoutFeedback, ActivityIndicator, Linking } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, RefreshControl, TouchableWithoutFeedback, ActivityIndicator, Linking, Alert } from 'react-native';
 import HapticFeedback from 'react-native-haptic-feedback';
 import { Divider } from "@rneui/themed";
 import axios from 'axios';
@@ -23,13 +23,15 @@ const NewsList = ({ navigation }) => {
         HapticFeedback.trigger(
             'impactMedium',
         )
-        const supported = await Linking.canOpenURL(url);
+       const supported = await Linking.canOpenURL(url);
 
         if (supported) {
-            navigation.navigate('WebViewNews', {
+            /*navigation.navigate('WebViewNews', {
                 webUrl: url,
-            });
-        }
+            }); */ 
+            await Linking.openURL(url);
+        } 
+        
     })
 
     const onRefresh = useCallback(() => {
@@ -40,10 +42,13 @@ const NewsList = ({ navigation }) => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: "https://newsapi.org/v2/top-headlines?country=us&apiKey=8a4d4f5d2ac8419e9ff359382ff06993",
+            url: "https://newsapi.org/v2/top-headlines?country=us&apiKey=e79939cd05a342ff955d40bd6650420a",
+
         }).then(response => {
             setNews(response.data);
             setLoading(false);
+        }).catch(err => {
+            Alert.alert(err);
         })
     }, [refreshing])
 
@@ -62,6 +67,8 @@ const NewsList = ({ navigation }) => {
                                     {/* <Image source={{ uri: }} style={styles.newsThumbnailImage} /> */}
 
                                     {item.urlToImage == null ? null : <Image source={{ uri: item.urlToImage }} style={styles.newsThumbnailImage} />}
+
+
 
                                     <Text style={styles.newsTitle}>{item.title}</Text>
 

@@ -16,6 +16,7 @@
 		7699B88040F8A987B510C191 /* libPods-newsocity-newsocityTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-newsocity-newsocityTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		82EC1C26CA2545E5B7192EEB /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4EFF21B1909474A973DE81C /* DMSans-Bold.ttf */; };
+		9EFA2A1A62354B7B864B5C7E /* Inter-Semi-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B47A7A3FDB64B2CA064EDB6 /* Inter-Semi-Bold.ttf */; };
 		D5875F6445F34784B2FDEE72 /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4B2D34B40CD4E899CE1C2B6 /* OpenSans-Medium.ttf */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-newsocity-newsocityTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newsocity-newsocityTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-newsocity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newsocity.debug.xcconfig"; path = "Target Support Files/Pods-newsocity/Pods-newsocity.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-newsocity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newsocity.release.xcconfig"; path = "Target Support Files/Pods-newsocity/Pods-newsocity.release.xcconfig"; sourceTree = "<group>"; };
+		5B47A7A3FDB64B2CA064EDB6 /* Inter-Semi-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Semi-Bold.ttf"; path = "../assets/fonts/Inter-Semi-Bold.ttf"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-newsocity-newsocityTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newsocity-newsocityTests.debug.xcconfig"; path = "Target Support Files/Pods-newsocity-newsocityTests/Pods-newsocity-newsocityTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-newsocity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newsocity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = newsocity/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				F4EFF21B1909474A973DE81C /* DMSans-Bold.ttf */,
 				0CA7A303D25045C6816043D5 /* DMSans-Medium.ttf */,
 				B4B2D34B40CD4E899CE1C2B6 /* OpenSans-Medium.ttf */,
+				5B47A7A3FDB64B2CA064EDB6 /* Inter-Semi-Bold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				82EC1C26CA2545E5B7192EEB /* DMSans-Bold.ttf in Resources */,
 				27D676DDE25146C0BAE565B6 /* DMSans-Medium.ttf in Resources */,
 				D5875F6445F34784B2FDEE72 /* OpenSans-Medium.ttf in Resources */,
+				9EFA2A1A62354B7B864B5C7E /* Inter-Semi-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
